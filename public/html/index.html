@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="/css/styles.css" />
+  <script src="https://use.fontawesome.com/c5f1696234.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
+<body>
+
+
+  <div id="app">
+    <div >
+      <form v-on:submit.prevent="onSubmit">
+        <input v-model="currentText" placeholder="Add a note">
+        <input @click="postSubmit"type="submit" value="Submit">
+      </form>
+
+      <ul v-for="note in notes">
+        <li @click="strikeThrough(note)" v-bind:class="{ complete: note.complete }"> {{note.text}} </li><span v-on:click="postDelete"><i class="fa fa-window-close" aria-hidden="true"></i></span>
+      </ul>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</head>
+</html>
