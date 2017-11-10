@@ -10,12 +10,12 @@
   <div id="app">
     <div >
       <form v-on:submit.prevent="onSubmit">
-        <input v-model="currentText" placeholder="Add a note">
-        <input @click="postSubmit"type="submit" value="Submit">
+        <input v-model="currentText" placeholder="Add a note" />
+        <input @click="postSubmit" type="submit" value="Submit" />
       </form>
 
       <ul v-for="note in notes">
-        <li @click="strikeThrough(note)" v-bind:class="{ complete: note.complete }"> {{note.text}} </li><span v-on:click="postDelete"><i class="fa fa-window-close" aria-hidden="true"></i></span>
+        <li @click="postComplete(note)" v-bind:class="{ complete: note.complete }"> {{note.text}} </li><span v-on:click="postDelete(note)"><i class="fa fa-window-close" aria-hidden="true"></i></span>
       </ul>
     </div>
   </div>

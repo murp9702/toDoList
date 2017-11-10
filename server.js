@@ -21,13 +21,32 @@ MongoClient.connect('mongodb://localhost:27017/toDo', function(err, db){
     });
 
     app.post('/submit', function(req,res){
-        console.log(req.body);
-        res.send('good job');
+        db.collection('list').insert(req.body, function(err){
+            if (err){
+                res.send('You done messed up!');
+            }
+            else {
+                console.log(req.body);
+                res.send('You did it');
+            }
+        });
     });
 
     app.post('/complete', function(req,res){
+        db.collection('list').update({text: req.body.text}, {complete: req.body.complete}, function(err) {
+            if (err) {
+                res.send('You done messed up!');
+            }
+            else {
+                res.send('complete');
+                console.log(req);
+            }
+        });
+    });
+
+    app.post('/delete', function(req,res){
         console.log(req);
-        res.send('good job');
+        res.send('delete')
     })
 
     app.listen(8080, function(){
