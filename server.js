@@ -44,7 +44,7 @@ MongoClient.connect('mongodb://localhost:27017/toDo', function(err, db) {
 
 
   app.post('/submit', function(req, res) {
-    db.collection('list').insert(req.body, function(err) {
+    db.collection('list').insert({text: req.body.text, complete: req.body.complete}, function(err) {
       if (err) {
         res.send('You done messed up!');
       } else {
@@ -52,6 +52,8 @@ MongoClient.connect('mongodb://localhost:27017/toDo', function(err, db) {
         res.send('You did it');
       }
     });
+    db.collection('list').update({ complete: "true" }, { $set: {complete: true} }, { multi: true })
+    db.collection('list').update({ complete: "false" }, { $set: {complete: false} }, { multi: true })
   });
 
   app.post('/complete', function(req, res) {
