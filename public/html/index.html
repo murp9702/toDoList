@@ -14,8 +14,8 @@
         <input @click="postSubmit" type="submit" value="Submit" />
       </form>
 
-      <ul v-for="note in notes">
-        <li @click="postComplete(note)" v-bind:class="{ complete: note.complete }"> {{note.text}} </li><span v-on:click="postDelete(note)"><i class="fa fa-window-close" aria-hidden="true"></i></span>
+      <ul  v-for="(note, index) in notes">
+        <li @click="postComplete(note, index)" v-bind:class="{ complete: note.complete }"> {{note.text}} </li><span v-on:click="postDelete(note, index)"><i class="fa fa-window-close" aria-hidden="true"></i></span>
       </ul>
     </div>
   </div>
